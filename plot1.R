@@ -1,53 +1,27 @@
 plot1 <- function() {
+    ## This function creates a histogram plot that is identical to the 
+    ## Plot 1 in the assignment. Output is sent to "plot1.png". 
     
-    ## References: 
-    ## as.Date, strptime: http://rfunction.com/archives/1912
+    ## PLEASE READ
+    ## Call get_data() to download and read the data for this project
+    ## The get_data function is defined in an extra file called get_data.R
+    ## that is in the same folder. I did this to avoid copying and pasting
+    ## identical code in all four plot.R files.
+    ## 
+    x <- get_data()   
     
+    ## Open a png file device for output
+    png(filename = "./ExData_Plotting1/plot1.png", 
+        width = 480, 
+        height = 480, 
+        units = "px")
     
-    ## Set the working directory
-    setwd("~/datasciencecoursera/Exploratory_Data_Analysis/Project1")
-    
-    ## Assign the URL to the location of the data 
-    fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-    
-    download.file(fileURL, destfile="./data/exdata%2Fdata%2Fhousehold_power_consumption.zip", method="curl")
- 
-    ## Unzip the package in place
-    unzip("./data/exdata%2Fdata%2Fhousehold_power_consumption.zip", overwrite = TRUE, exdir = "./data/")
-        
-    dateDownloaded <- date()
-    dateDownloaded
-    
-    
-    ## Still need to add code to get data to this state
-    
-    
-    library(datasets)
-    
-    
-    x <- read.csv("./data/Feb_data.txt", sep=";", 
-                  colClasses = c("character","character","numeric","numeric","numeric",
-                                 "numeric","numeric","numeric","numeric"), 
-                  strip.white = TRUE,
-                  na.strings = c("?",""),
-                  header = TRUE)
-    
-    merged <- paste(x$Date, x$Time)
-    Date_Time <- strptime(merged, format = "%d/%m/%Y %H:%M:%S")
-
-    ## Remove the Date and Time columns from the date set
-    x <- subset(x, select = -c(Date, Time))
-
-    ## Add the new Date_Time column to the data set
-    x <- cbind(Date_Time, x)
-    
-    ## Create plot 
+    ## Create histogram plot 
     hist(x$Global_active_power, 
          main = paste("Global Active Power"), 
          col = "red", 
          xlab = "Global Active Power (kilowatts)")
-    
-    ## Copy the screen to a PNG file and close the device
-    dev.copy(png, file = "./ExData_Plotting1/plot1.png")
+ 
+    ## Close the device
     dev.off() 
 }
