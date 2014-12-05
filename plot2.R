@@ -8,7 +8,7 @@ plot2 <- function() {
     ## that is in the same folder. I did this to avoid copying and pasting
     ## identical code in all four plot.R files.
     ## 
-    x <- get_data()   
+    data <- get_data()   
         
     ## Open a png file device for output
     png(filename = "./ExData_Plotting1/plot2.png", 
@@ -17,8 +17,8 @@ plot2 <- function() {
         units = "px")
     
     ## Create plot
-    plot(x$datetime, 
-         x$Global_active_power, 
+    plot(data$datetime, 
+         data$Global_active_power, 
          type = "l",
          ylab = "Global Active Power (kilowatts)",
          xlab = "")

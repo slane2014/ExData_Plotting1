@@ -8,7 +8,7 @@ plot1 <- function() {
     ## that is in the same folder. I did this to avoid copying and pasting
     ## identical code in all four plot.R files.
     ## 
-    x <- get_data()   
+    data <- get_data()   
     
     ## Open a png file device for output
     png(filename = "./ExData_Plotting1/plot1.png", 
@@ -17,7 +17,7 @@ plot1 <- function() {
         units = "px")
     
     ## Create histogram plot 
-    hist(x$Global_active_power, 
+    hist(data$Global_active_power, 
          main = paste("Global Active Power"), 
          col = "red", 
          xlab = "Global Active Power (kilowatts)")

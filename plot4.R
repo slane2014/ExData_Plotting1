@@ -8,7 +8,7 @@ plot4 <- function() {
     ## that is in the same folder. I did this to avoid copying and pasting
     ## identical code in all four plot.R files.
     ## 
-    x <- get_data()   
+    data <- get_data()   
     
     ## Open a png file device for output
     png(filename = "./ExData_Plotting1/plot4.png", 
@@ -20,31 +20,31 @@ plot4 <- function() {
     par(mfrow = c(2,2))
  
     ## This creates the plot in the upper left
-    plot(x$datetime, 
-         x$Global_active_power, 
+    plot(data$datetime, 
+         data$Global_active_power, 
          type = "l",
          ylab = "Global Active Power",
          xlab = "")
     
     ## This creates the plot in the upper right
-    plot(x$datetime, 
-         x$Voltage, 
+    plot(data$datetime, 
+         data$Voltage, 
          type = "l",
          ylab = "Voltage",
          xlab = "datetime")
     
     ## This creates the plot in the lower left
-    with (x, plot(datetime, Global_active_power, 
+    with (data, plot(datetime, Global_active_power, 
                   type = "n", 
                   ylim = c(1, 38),
                   ylab = "Energy sub metering",
                   xlab = ""))
     
-    with(subset(x, Sub_metering_1 >= 0), 
+    with(subset(data, Sub_metering_1 >= 0), 
          points(datetime, Sub_metering_1, type = "l"))
-    with(subset(x, Sub_metering_2 >= 0), 
+    with(subset(data, Sub_metering_2 >= 0), 
          points(datetime, Sub_metering_2, type = "l", col = "red"))
-    with(subset(x, Sub_metering_3 >= 0), 
+    with(subset(data, Sub_metering_3 >= 0), 
          points(datetime, Sub_metering_3, type = "l", col = "blue"))
     legend("topright", 
            lty=1, 
@@ -53,8 +53,8 @@ plot4 <- function() {
            bty='n')
     
     ## This creates the plot in the lower right
-    plot(x$datetime, 
-         x$Global_reactive_power, 
+    plot(data$datetime, 
+         data$Global_reactive_power, 
          type = "l",
          ylab = "Global_reactive_power",
          xlab = "datetime") 
